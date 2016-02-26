@@ -5,49 +5,93 @@
  */
 package net.spacejunkjim.miniproject3;
 
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import jdk.internal.org.xml.sax.helpers.DefaultHandler;
 import org.w3c.dom.Document;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
-import org.xml.sax.XMLReader;
 
 /**
  *
  * @author jamesashford
  */
 public class WeatherParser {
-    public static void main(String[] args) throws MalformedURLException, IOException, SAXException, NoSuchFieldException, URISyntaxException, ParserConfigurationException, XPathExpressionException {
+    private String locationCode; // 2641181
+    private String output;
+    
+    public WeatherParser(String code) {
+        locationCode = code;
         
+        // Create a document builder using factory
+        DocumentBuilder builder = getDocumentBuilder();
+        
+        // Get the url of the BBC Weather RSS feed
+        URL url = getURL();
+        
+        Document doc = null;
+        try {
+            // Create a document from parsed url stream
+            doc = builder.parse(url.openStream());
+        } catch (SAXException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Start parsing
+        output = parse(doc);
+    }
+    
+    public String getOutput() {
+        return output;
+    }
+    
+    private DocumentBuilder getDocumentBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
+        DocumentBuilder builder = null;
+        try {
+            builder = factory.newDocumentBuilder();
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        URL url = new URL("http://open.live.bbc.co.uk/weather/feeds/en/2641181/observations.rss");
+        return builder;
+    }
+    
+    private URL getURL() {
+        URL url = null;
+        try {
+            url = new URL("http://open.live.bbc.co.uk/weather/feeds/en/" + locationCode + "/observations.rss");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        Document doc = builder.parse(url.openStream());
+        return url;
+    }
+    
+    private String parse(Document doc) {
+        // Create new XPath using factory
         XPathFactory xpfactory = XPathFactory.newInstance();
-        
         XPath path = xpfactory.newXPath();
         
-        String output = path.evaluate("/rss/channel/item/title", doc);
-        System.out.println(output);
+        // Get the first title element of the RSS feed and output
+        String output = "ERROR";
+        try {
+            output = path.evaluate("/rss/channel/item/title", doc);
+        } catch (XPathExpressionException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Return the title
+        return output;
     }
     
 }
