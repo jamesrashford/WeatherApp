@@ -1,7 +1,0 @@
-Public Class HellowJim{
-
-  public static void main(String[] args){
-  
-    System.out.println("Hello, Jim!);
-  }
-}
