@@ -24,17 +24,36 @@ import org.xml.sax.SAXException;
  * @author jamesashford
  */
 public class WeatherParser {
-    private String locationCode; // 2641181
     private String output;
     
-    public WeatherParser(String code) {
-        locationCode = code;
+    public WeatherParser(String addressHTTP) {
         
         // Create a document builder using factory
         DocumentBuilder builder = getDocumentBuilder();
         
-        // Get the url of the BBC Weather RSS feed
-        URL url = getURL();
+        // Get the URL of the BBC Weather RSS feed using HTTP address
+        URL url = getURL(addressHTTP);
+        
+        Document doc = null;
+        try {
+            // Create a document from parsed url stream
+            doc = builder.parse(url.openStream());
+        } catch (SAXException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Start parsing
+        output = parse(doc);
+    }
+    
+    public WeatherParser(int locationCode) {
+        // Create a document builder using factory
+        DocumentBuilder builder = getDocumentBuilder();
+        
+        // Get the URL of the BBC Weather RSS feed using location code
+        URL url = getURL(locationCode);
         
         Document doc = null;
         try {
@@ -66,10 +85,22 @@ public class WeatherParser {
         return builder;
     }
     
-    private URL getURL() {
+    private URL getURL(String address) {
         URL url = null;
         try {
-            url = new URL("http://open.live.bbc.co.uk/weather/feeds/en/" + locationCode + "/observations.rss");
+            url = new URL(address);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return url;
+    }
+    
+    private URL getURL(int locationCode) {
+        String code = String.valueOf(locationCode);
+        URL url = null;
+        try {
+            url = new URL("http://open.live.bbc.co.uk/weather/feeds/en/" + code + "/observations.rss");
         } catch (MalformedURLException ex) {
             Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
         }
