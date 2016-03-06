@@ -8,6 +8,8 @@ package net.spacejunkjim.miniproject3;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -47,6 +49,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         jTextArea1 = new JTextArea();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BBC Weather Observations");
 
         appTitle.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
         appTitle.setText("BBC Weather Observations");
@@ -61,7 +64,13 @@ public class WeatherFrame extends javax.swing.JFrame {
         });
 
         appForecastButton.setText("Forecast");
+        appForecastButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                appForecastButtonMouseClicked(evt);
+            }
+        });
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         appOutputTextArea.setViewportView(jTextArea1);
@@ -104,6 +113,24 @@ public class WeatherFrame extends javax.swing.JFrame {
     private void appURLFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_appURLFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_appURLFieldActionPerformed
+
+    private void appForecastButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_appForecastButtonMouseClicked
+        // Clear the output
+        appOutputTextArea.removeAll();
+        
+        // Get the URL
+        String url = appURLField.getText();
+        
+        // Get a WeatherParser with URL
+        WeatherParser parser = new WeatherParser(url);
+        
+        // Add output to display
+        // Why is there an error???
+        appOutputTextArea.append(parser.getOutput());
+        
+        // Clear URL field
+        appURLField.setText("");
+    }//GEN-LAST:event_appForecastButtonMouseClicked
 
     /**
      * @param args the command line arguments
