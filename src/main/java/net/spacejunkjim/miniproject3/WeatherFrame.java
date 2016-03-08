@@ -126,7 +126,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         WeatherParser parser = new WeatherParser(url);
         
         // Add output to display
-        // Why is there an error???
+        // Now the error has been resolved.
         jTextArea1.append(parser.getOutput());
         
         // Clear URL field
