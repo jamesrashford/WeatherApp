@@ -118,19 +118,25 @@ public class WeatherFrame extends javax.swing.JFrame {
     private void appForecastButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_appForecastButtonMouseClicked
         // Clear the output
         jTextArea1.removeAll();
-        
+        jTextArea1.setText("");
         // Get the URL
         String url = appURLField.getText();
         
-        // Get a WeatherParser with URL
-        WeatherParser parser = new WeatherParser(url);
+        if(url.equals("")){
+            jTextArea1.setText("Please enter an RSS URL");
+        }else{
         
-        // Add output to display
-        // Now the error has been resolved.
-        jTextArea1.append(parser.getOutput());
         
-        // Clear URL field
-        appURLField.setText("");
+            // Get a WeatherParser with URL
+            WeatherParser parser = new WeatherParser(url);
+        
+            // Add output to display
+            // Now the error has been resolved.
+            jTextArea1.append(parser.getOutput());
+        
+            // Clear URL field
+            appURLField.setText("");
+        }
     }//GEN-LAST:event_appForecastButtonMouseClicked
 
     /**
