@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="BBC Weather Observations"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -31,7 +32,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="appURLLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="appURLField" pref="350" max="32767" attributes="0"/>
+                      <Component id="appURLField" pref="291" max="32767" attributes="0"/>
                   </Group>
                   <Component id="appForecastButton" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">

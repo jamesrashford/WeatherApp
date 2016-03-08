@@ -50,6 +50,7 @@ public class WeatherFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("BBC Weather Observations");
+        setResizable(false);
 
         appTitle.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
         appTitle.setText("BBC Weather Observations");
@@ -85,7 +86,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                     .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(appURLLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appURLField, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+                        .addComponent(appURLField, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
                     .addComponent(appForecastButton, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(appTitle)
@@ -116,7 +117,7 @@ public class WeatherFrame extends javax.swing.JFrame {
 
     private void appForecastButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_appForecastButtonMouseClicked
         // Clear the output
-        appOutputTextArea.removeAll();
+        jTextArea1.removeAll();
         
         // Get the URL
         String url = appURLField.getText();
@@ -126,7 +127,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         
         // Add output to display
         // Why is there an error???
-        appOutputTextArea.append(parser.getOutput());
+        jTextArea1.append(parser.getOutput());
         
         // Clear URL field
         appURLField.setText("");
@@ -136,29 +137,6 @@ public class WeatherFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WeatherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WeatherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WeatherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WeatherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
