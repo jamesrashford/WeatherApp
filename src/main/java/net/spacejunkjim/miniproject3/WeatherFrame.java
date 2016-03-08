@@ -120,9 +120,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         
         if(url.equals("") || url.equals(defaultFrameInputText)){
             jTextArea1.setText("Please enter an RSS URL");
-        }else{
-        
-        
+        } else {
             // Get a WeatherParser with URL
             WeatherParser parser = new WeatherParser(url);
         
