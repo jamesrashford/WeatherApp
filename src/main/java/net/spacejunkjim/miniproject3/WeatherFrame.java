@@ -21,12 +21,13 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author jamesashford
+ * @author James Ashford, Dorian Dressler
  */
 public class WeatherFrame extends javax.swing.JFrame {
 
+    String defaultFrameInputText = "Enter BBC Weather Observations RSS URL...";
     /**
-     * Creates new form WeatherFrame
+     * Constructor new form WeatherFrame
      */
     public WeatherFrame() {
         initComponents();
@@ -122,7 +123,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         // Get the URL
         String url = appURLField.getText();
         
-        if(url.equals("")){
+        if(url.equals("") || url.equals(defaultFrameInputText)){
             jTextArea1.setText("Please enter an RSS URL");
         }else{
         
