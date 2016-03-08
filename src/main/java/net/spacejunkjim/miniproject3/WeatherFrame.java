@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.spacejunkjim.miniproject3;
 
 import java.awt.Font;
@@ -20,7 +15,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
 /**
- *
+ * The GUI Frame for Part 2 of the XML Assignment
  * @author James Ashford, Dorian Dressler
  */
 public class WeatherFrame extends javax.swing.JFrame {
