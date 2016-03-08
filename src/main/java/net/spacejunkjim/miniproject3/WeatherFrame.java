@@ -5,13 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 /**
@@ -43,6 +46,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         appForecastButton = new JButton();
         appOutputTextArea = new JScrollPane();
         jTextArea1 = new JTextArea();
+        appWeatherIcon = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("BBC Weather Observations");
@@ -66,27 +70,40 @@ public class WeatherFrame extends javax.swing.JFrame {
                 appForecastButtonMouseClicked(evt);
             }
         });
+        appForecastButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                appForecastButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         appOutputTextArea.setViewportView(jTextArea1);
 
+        appWeatherIcon.setHorizontalAlignment(SwingConstants.CENTER);
+        appWeatherIcon.setIcon(new ImageIcon(getClass().getResource("/simple_weather_icon_01.png"))); // NOI18N
+        appWeatherIcon.setBorder(BorderFactory.createEtchedBorder());
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(appOutputTextArea)
-                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(appURLLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appURLField, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
-                    .addComponent(appForecastButton, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(appURLField)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(appForecastButton))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(appTitle)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(appOutputTextArea, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(appWeatherIcon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -96,12 +113,14 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(appURLLabel)
-                    .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(appForecastButton))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(appForecastButton)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(appOutputTextArea, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(appWeatherIcon)
+                        .addContainerGap())
+                    .addComponent(appOutputTextArea)))
         );
 
         pack();
@@ -133,6 +152,10 @@ public class WeatherFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_appForecastButtonMouseClicked
 
+    private void appForecastButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_appForecastButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_appForecastButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -152,6 +175,7 @@ public class WeatherFrame extends javax.swing.JFrame {
     private JLabel appTitle;
     private JTextField appURLField;
     private JLabel appURLLabel;
+    private JLabel appWeatherIcon;
     private JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
