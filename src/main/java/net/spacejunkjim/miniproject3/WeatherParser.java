@@ -114,7 +114,7 @@ public class WeatherParser {
         XPath path = xpfactory.newXPath();
         
         // Get the first title element of the RSS feed and output
-        String output = "ERROR";
+        String output = "Location Data Not Found!";
         try {
             output = path.evaluate("/rss/channel/item/title", doc);
         } catch (XPathExpressionException ex) {
