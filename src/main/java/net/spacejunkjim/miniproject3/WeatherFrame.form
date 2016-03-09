@@ -34,13 +34,13 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="appURLLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="queryLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="appURLField" min="-2" pref="154" max="-2" attributes="0"/>
+                              <Component id="queryField" min="-2" pref="154" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="appForecastButton" pref="121" max="32767" attributes="0"/>
+                              <Component id="getLocationsButton" pref="121" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                          <Component id="locationSelector" max="32767" attributes="0"/>
                           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -56,12 +56,12 @@
               <Component id="appTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="appURLLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="appURLField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="appForecastButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="queryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="queryField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="getLocationsButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+              <Component id="locationSelector" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -78,37 +78,32 @@
         <Property name="text" type="java.lang.String" value="BBC Weather Observations"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="appURLLabel">
+    <Component class="javax.swing.JLabel" name="queryLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="City"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="appURLField">
+    <Component class="javax.swing.JTextField" name="queryField">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter a location..."/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="appURLFieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="queryFieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="appForecastButton">
+    <Component class="javax.swing.JButton" name="getLocationsButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Get Location(s)"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="appForecastButtonMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="appForecastButtonActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="getLocationsButtonMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="getLocationsButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="locationSelector">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>

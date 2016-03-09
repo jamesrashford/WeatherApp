@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -44,10 +45,10 @@ public class WeatherFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         appTitle = new JLabel();
-        appURLLabel = new JLabel();
-        appURLField = new JTextField();
-        appForecastButton = new JButton();
-        jComboBox1 = new JComboBox<>();
+        queryLabel = new JLabel();
+        queryField = new JTextField();
+        getLocationsButton = new JButton();
+        locationSelector = new JComboBox<>();
         jPanel1 = new JPanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -56,28 +57,26 @@ public class WeatherFrame extends javax.swing.JFrame {
         appTitle.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
         appTitle.setText("BBC Weather Observations");
 
-        appURLLabel.setText("City");
+        queryLabel.setText("City");
 
-        appURLField.setText("Enter a location...");
-        appURLField.addActionListener(new ActionListener() {
+        queryField.setText("Enter a location...");
+        queryField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                appURLFieldActionPerformed(evt);
+                queryFieldActionPerformed(evt);
             }
         });
 
-        appForecastButton.setText("Get Location(s)");
-        appForecastButton.addMouseListener(new MouseAdapter() {
+        getLocationsButton.setText("Get Location(s)");
+        getLocationsButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                appForecastButtonMouseClicked(evt);
+                getLocationsButtonMouseClicked(evt);
             }
         });
-        appForecastButton.addActionListener(new ActionListener() {
+        getLocationsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                appForecastButtonActionPerformed(evt);
+                getLocationsButtonActionPerformed(evt);
             }
         });
-
-        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,12 +99,12 @@ public class WeatherFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(appURLLabel)
+                                .addComponent(queryLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(queryField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(appForecastButton, GroupLayout.PREFERRED_SIZE, 121, Short.MAX_VALUE))
-                            .addComponent(jComboBox1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(getLocationsButton, GroupLayout.PREFERRED_SIZE, 121, Short.MAX_VALUE))
+                            .addComponent(locationSelector, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
@@ -115,11 +114,11 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addComponent(appTitle)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(appURLLabel)
-                    .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(appForecastButton))
+                    .addComponent(queryLabel)
+                    .addComponent(queryField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getLocationsButton))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(locationSelector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -128,34 +127,30 @@ public class WeatherFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void appURLFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_appURLFieldActionPerformed
+    private void queryFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_queryFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_appURLFieldActionPerformed
+    }//GEN-LAST:event_queryFieldActionPerformed
 
-    private void appForecastButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_appForecastButtonMouseClicked
+    private void getLocationsButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_getLocationsButtonMouseClicked
+        // Clear ComboBox
+        locationSelector.removeAllItems();
+
+        // Get the city name
+        String city = queryField.getText();
         
-        // Clear the output
-        jTextArea1.removeAll();
-        jTextArea1.setText("");
-        // Get the URL
-        String url = appURLField.getText();
+        // Get locations
+        LocationParser parser = new LocationParser(city);
+        ArrayList<Location> locations = parser.getOutput();
         
-        if(url.equals("") || url.equals(defaultFrameInputText)){
-            jTextArea1.setText("Please enter an RSS URL");
-        } else {
-            // Get a WeatherParser with URL
-            WeatherParser parser = new WeatherParser(url);
-            String weatherData = parser.getOutput();
-            jTextArea1.append(weatherData);
-            setWeatherIcon(weatherData);
-            // Clear URL field
-            appURLField.setText("");
+        // Populate ComboList
+        for (Location l : locations) {
+            locationSelector.addItem(l.getName() + ", " + l.getCountry());
         }
-    }//GEN-LAST:event_appForecastButtonMouseClicked
+    }//GEN-LAST:event_getLocationsButtonMouseClicked
 
-    private void appForecastButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_appForecastButtonActionPerformed
+    private void getLocationsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_getLocationsButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_appForecastButtonActionPerformed
+    }//GEN-LAST:event_getLocationsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,11 +174,11 @@ public class WeatherFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton appForecastButton;
     private JLabel appTitle;
-    private JTextField appURLField;
-    private JLabel appURLLabel;
-    private JComboBox<String> jComboBox1;
+    private JButton getLocationsButton;
     private JPanel jPanel1;
+    private JComboBox<String> locationSelector;
+    private JTextField queryField;
+    private JLabel queryLabel;
     // End of variables declaration//GEN-END:variables
 }

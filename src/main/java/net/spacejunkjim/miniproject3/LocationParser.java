@@ -31,13 +31,10 @@ import org.xml.sax.SAXException;
 public class LocationParser {
     private static final String GEONAMES_USERNAME = "spacejunkjim";
     private ArrayList<Location> output;
-    private int rows;
     
-    public LocationParser(String location, int rows) {
+    public LocationParser(String location) {
         // Create a document builder using factory
         DocumentBuilder builder = getDocumentBuilder();
-        
-        this.rows = rows;
         
         // Get the URL of the BBC Weather RSS feed using location code
         URL url = getURL(location);
@@ -76,7 +73,7 @@ public class LocationParser {
         URL url = null;
         try {
             String query = URLEncoder.encode(location, StandardCharsets.UTF_8.toString());
-            url = new URL("http://api.geonames.org/search?q=" + query + "&maxRows=" + rows + "&lang=en&username=" + GEONAMES_USERNAME);
+            url = new URL("http://api.geonames.org/search?q=" + query + "&lang=en&username=" + GEONAMES_USERNAME);
         } catch (MalformedURLException ex) {
             Logger.getLogger(LocationParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedEncodingException ex) {
@@ -97,7 +94,7 @@ public class LocationParser {
             int count = Integer.parseInt(path.evaluate("count(/geonames/geoname)", doc));
             
             for (int i = 1; i <= count; i++) {
-                String city = path.evaluate("/geonames/geoname[" + i + "]/name", doc);
+                String city = path.evaluate("/geonames/geoname[" + i + "]/toponymName", doc);
                 String country = path.evaluate("/geonames/geoname[" + i + "]/countryName", doc);
                 int geonameId = Integer.parseInt(path.evaluate("/geonames/geoname[" + i + "]/geonameId", doc));
                 

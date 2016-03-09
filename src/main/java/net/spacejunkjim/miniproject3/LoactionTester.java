@@ -17,7 +17,7 @@ public class LoactionTester {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        LocationParser parser = new LocationParser("Norwich", 10);
+        LocationParser parser = new LocationParser("Norwich");
         ArrayList<Location> locations = parser.getOutput();
     }
     
