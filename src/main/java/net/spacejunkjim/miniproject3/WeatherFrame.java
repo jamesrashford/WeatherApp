@@ -23,7 +23,7 @@ import javax.swing.WindowConstants;
  */
 public class WeatherFrame extends javax.swing.JFrame {
 
-    String defaultFrameInputText = "Enter BBC Weather Observations RSS URL...";
+    String defaultFrameInputText = "Enter a location...";
     /**
      * Constructor new form WeatherFrame
      */
@@ -54,16 +54,16 @@ public class WeatherFrame extends javax.swing.JFrame {
         appTitle.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
         appTitle.setText("BBC Weather Observations");
 
-        appURLLabel.setText("URL: ");
+        appURLLabel.setText("City");
 
-        appURLField.setText("Enter BBC Weather Observations RSS URL...");
+        appURLField.setText("Enter a location...");
         appURLField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 appURLFieldActionPerformed(evt);
             }
         });
 
-        appForecastButton.setText("Forecast");
+        appForecastButton.setText("Get Location(s)");
         appForecastButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 appForecastButtonMouseClicked(evt);
@@ -94,7 +94,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                         .addComponent(appURLLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(appURLField)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(230, 230, 230)
                         .addComponent(appForecastButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(appTitle)
@@ -102,8 +102,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(appOutputTextArea, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appWeatherIcon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(appWeatherIcon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -118,7 +117,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(appWeatherIcon)
-                        .addContainerGap())
+                        .addContainerGap(45, Short.MAX_VALUE))
                     .addComponent(appOutputTextArea)))
         );
 

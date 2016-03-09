@@ -31,7 +31,7 @@
                       <Component id="appURLLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="appURLField" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
                       <Component id="appForecastButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -44,7 +44,6 @@
                       <Component id="appWeatherIcon" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,7 +62,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="appWeatherIcon" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
                   <Component id="appOutputTextArea" max="32767" attributes="0"/>
               </Group>
@@ -82,12 +81,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="appURLLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="URL: "/>
+        <Property name="text" type="java.lang.String" value="City"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="appURLField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter BBC Weather Observations RSS URL..."/>
+        <Property name="text" type="java.lang.String" value="Enter a location..."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="appURLFieldActionPerformed"/>
@@ -95,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="appForecastButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Forecast"/>
+        <Property name="text" type="java.lang.String" value="Get Location(s)"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="appForecastButtonMouseClicked"/>
