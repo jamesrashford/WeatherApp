@@ -47,7 +47,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         appURLLabel = new JLabel();
         appURLField = new JTextField();
         appForecastButton = new JButton();
-        jComboBox1 = new JComboBox<String>();
+        jComboBox1 = new JComboBox<>();
         jPanel1 = new JPanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -77,7 +77,7 @@ public class WeatherFrame extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,7 +104,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(appForecastButton, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addComponent(appForecastButton, GroupLayout.PREFERRED_SIZE, 121, Short.MAX_VALUE))
                             .addComponent(jComboBox1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
