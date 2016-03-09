@@ -26,8 +26,8 @@ import javax.swing.WindowConstants;
  * @author James Ashford, Dorian Dressler
  */
 public class WeatherFrame extends javax.swing.JFrame {
-    ArrayList<Location> locations;
-    String defaultFrameInputText = "Enter a location...";
+    private ArrayList<Location> locations;
+    private String defaultFrameInputText = "Enter a location...";
     /**
      * Constructor new form WeatherFrame
      */
@@ -48,7 +48,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         queryLabel = new JLabel();
         queryField = new JTextField();
         getLocationsButton = new JButton();
-        locationSelector = new JComboBox<>();
+        locationSelector = new JComboBox<String>();
         jPanel1 = new JPanel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -78,6 +78,12 @@ public class WeatherFrame extends javax.swing.JFrame {
             }
         });
 
+        locationSelector.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                locationSelectorActionPerformed(evt);
+            }
+        });
+
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -103,7 +109,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(queryField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(getLocationsButton, GroupLayout.PREFERRED_SIZE, 121, Short.MAX_VALUE))
+                                .addComponent(getLocationsButton, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
                             .addComponent(locationSelector, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
@@ -152,6 +158,15 @@ public class WeatherFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getLocationsButtonActionPerformed
 
+    private void locationSelectorActionPerformed(ActionEvent evt) {//GEN-FIRST:event_locationSelectorActionPerformed
+        
+        // TODO add your handling code here:
+        // i am here
+        Location l = locations.get(locationSelector.getSelectedIndex());
+        int geonameId = l.getGeonameId();
+    }//GEN-LAST:event_locationSelectorActionPerformed
+    
+    
     /**
      * @param args the command line arguments
      */
