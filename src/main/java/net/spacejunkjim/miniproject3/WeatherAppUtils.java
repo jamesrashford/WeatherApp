@@ -13,6 +13,13 @@ import java.io.InputStream;
  */
 public class WeatherAppUtils {
     
+    public static String getWeatherCondition(String weather) {
+        String part1 = weather.split(": ")[1];
+        String condition = part1.split(", ")[0];
+        
+        return condition;
+    }
+    
     public static String weatherToIcon(String weather) {
         if (weather.equals(WeatherConditions.WEATHER_CLOUDY)) {
             return "";

@@ -12,7 +12,6 @@ import java.util.Date;
  * @author jamesashford
  */
 
-// Wednesday - 13:00 GMT: Light Cloud, 7Â°C (45Â°F)
 public class Weather {
     private Date date;
     private String weatherCondition;
@@ -29,6 +28,6 @@ public class Weather {
     }
     
     private void split(String weather) {
-        
+        String[] w1 = weather.split(weather);
     }
 }

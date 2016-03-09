@@ -144,16 +144,12 @@ public class WeatherFrame extends javax.swing.JFrame {
             WeatherParser parser = new WeatherParser(url);
         
             // Add output to display
-            // Now the error has been resolved.
-            jTextArea1.append(parser.getOutput());
-            String weatherInfoString = parser.getOutput(); // Dorian is working in here
+            String output = parser.getOutput();
+            jTextArea1.append(output);
+            jTextArea1.append("\n" + WeatherAppUtils.getWeatherCondition(output));
             
-            //************************************************
-            // i will put this into a separate method
-            // i right now this is only here for test purposes
-            //************************************************
             
-            if (weatherInfoString.contains("null")) {
+            if (output.contains("null")) {
                 appWeatherIcon.setIcon(new ImageIcon(getClass().getResource("/simple_weather_icon_02.png")));
             } else {
                 
