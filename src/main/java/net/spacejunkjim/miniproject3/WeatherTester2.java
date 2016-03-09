@@ -15,9 +15,9 @@ public class WeatherTester2 {
         String addressHTTP = "http://open.live.bbc.co.uk/weather/feeds/en/2656397/observations.rss";
         WeatherParser parser = new WeatherParser(addressHTTP);
         Weather weatherTester = new Weather(parser.getOutput());
-        System.out.print("Testing getTemperature method:");
+        System.out.print("Testing getTemperature:");
         System.out.println(weatherTester.getTemperature());
-        System.out.print("Testing getWindDirection method:");
+        System.out.print("Testing getWindDirection:");
         System.out.println(weatherTester.getWindDirection());
         System.out.print("Testing getWindSpeed:");
         System.out.println(weatherTester.getWindSpeed());
