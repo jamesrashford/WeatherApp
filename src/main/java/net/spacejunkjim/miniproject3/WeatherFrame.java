@@ -6,9 +6,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -44,9 +46,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         appURLLabel = new JLabel();
         appURLField = new JTextField();
         appForecastButton = new JButton();
-        appOutputTextArea = new JScrollPane();
-        jTextArea1 = new JTextArea();
-        appWeatherIcon = new JLabel();
+        jComboBox1 = new JComboBox<>();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("BBC Weather Observations");
@@ -75,14 +75,7 @@ public class WeatherFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        appOutputTextArea.setViewportView(jTextArea1);
-
-        appWeatherIcon.setHorizontalAlignment(SwingConstants.CENTER);
-        appWeatherIcon.setIcon(new ImageIcon(getClass().getResource("/simple_weather_icon_01.png"))); // NOI18N
-        appWeatherIcon.setBorder(BorderFactory.createEtchedBorder());
+        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,18 +84,18 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(appTitle)
+                        .addGap(0, 98, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(appURLLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appURLField)
-                        .addGap(230, 230, 230)
-                        .addComponent(appForecastButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(appTitle)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(appOutputTextArea, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(appWeatherIcon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(appForecastButton, GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jComboBox1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -114,11 +107,8 @@ public class WeatherFrame extends javax.swing.JFrame {
                     .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(appForecastButton))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(appWeatherIcon)
-                        .addContainerGap(45, Short.MAX_VALUE))
-                    .addComponent(appOutputTextArea)))
+                .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,16 +161,14 @@ public class WeatherFrame extends javax.swing.JFrame {
      */
     private void setWeatherIcon(String comparator){
         String fileLocation = WeatherAppUtils.weatherToIcon(comparator);
-        appWeatherIcon.setIcon(new ImageIcon(getClass().getResource(fileLocation)));
+        //appWeatherIcon.setIcon(new ImageIcon(getClass().getResource(fileLocation)));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton appForecastButton;
-    private JScrollPane appOutputTextArea;
     private JLabel appTitle;
     private JTextField appURLField;
     private JLabel appURLLabel;
-    private JLabel appWeatherIcon;
-    private JTextArea jTextArea1;
+    private JComboBox<String> jComboBox1;
     // End of variables declaration//GEN-END:variables
 }
