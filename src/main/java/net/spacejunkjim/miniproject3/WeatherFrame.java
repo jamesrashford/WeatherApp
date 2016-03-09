@@ -153,9 +153,10 @@ public class WeatherFrame extends javax.swing.JFrame {
             // i right now this is only here for test purposes
             //************************************************
             
-            if(weatherInfoString.contains("null")){
-                
+            if (weatherInfoString.contains("null")) {
                 appWeatherIcon.setIcon(new ImageIcon(getClass().getResource("/simple_weather_icon_02.png")));
+            } else {
+                
             }
             //System.out.println("Test String: " + test);
             
