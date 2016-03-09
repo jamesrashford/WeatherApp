@@ -242,7 +242,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         jPanel1.setVisible(true);
 
         // Set info message to invisible
-        userInfoLabel1.setVisible(false);
+        userInfo.setVisible(false);
         
         // Clear ComboBox
         locationSelector.removeAllItems();
