@@ -166,6 +166,9 @@ public class WeatherFrame extends javax.swing.JFrame {
         for (Location l : locations) {
             locationSelector.addItem(l.getName() + ", " + l.getCountry());
         }
+        
+        // Reset query field
+        queryField.setText(defaultFrameInputText);
     }//GEN-LAST:event_getLocationsButtonMouseClicked
 
     private void getLocationsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_getLocationsButtonActionPerformed
