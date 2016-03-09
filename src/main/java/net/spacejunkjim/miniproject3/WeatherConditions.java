@@ -10,7 +10,7 @@ package net.spacejunkjim.miniproject3;
  * @author jamesashford
  */
 public class WeatherConditions {
-    public static final String WEATHER_SWUNNY_DAY = "Sunny Day";
+    public static final String WEATHER_SWUNNY_DAY = "Sunny";
     public static final String WEATHER_PARTLY_CLOUDY = "Partly cloudy (night)";
     public static final String WEATHER_SUNNY_INTERVALS = "Sunny Intervals";
     public static final String WEATHER_MEDIUM_CLOUD = "White Medium Level Cloud";
