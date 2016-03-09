@@ -20,18 +20,19 @@ public class Weather {
     private float TemperatureFahrenheit;
     
     public Weather(String weather) {
-        init(weather);
+        split(weather);
     }
     
     public Weather(WeatherParser parser) {
         String weather = parser.getOutput();
+        split(weather);
     }
     
     private void init(String weather) {
-        init(weather);
+        split(weather);
     }
     
-    private void init(String weather) {
+    private void split(String weather) {
         
     }
 }
