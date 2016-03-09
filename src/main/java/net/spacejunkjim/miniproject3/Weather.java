@@ -28,10 +28,6 @@ public class Weather {
         split(weather);
     }
     
-    private void init(String weather) {
-        split(weather);
-    }
-    
     private void split(String weather) {
         
     }
