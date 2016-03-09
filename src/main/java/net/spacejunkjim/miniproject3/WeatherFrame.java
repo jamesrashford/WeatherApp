@@ -157,7 +157,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                 
                 appWeatherIcon.setIcon(new ImageIcon(getClass().getResource("/simple_weather_icon_02.png")));
             }
-            System.out.println("Test Sing: \" + test);
+            //System.out.println("Test String: " + test);
             
         
             // Clear URL field
