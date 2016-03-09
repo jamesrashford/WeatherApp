@@ -273,7 +273,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         if(comparator.contains(WeatherConditions.WEATHER_HAZY)){
             fileLocation = "/simple_weather_icon_10.png";
         }
-        appWeatherIcon.setIcon(fileLocation);
+        appWeatherIcon.setIcon(new ImageIcon(getClass().getResource(fileLocation)));
      
         
         
