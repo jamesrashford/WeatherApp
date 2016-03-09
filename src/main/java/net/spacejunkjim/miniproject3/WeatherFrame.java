@@ -26,7 +26,7 @@ import javax.swing.WindowConstants;
  * @author James Ashford, Dorian Dressler
  */
 public class WeatherFrame extends javax.swing.JFrame {
-
+    ArrayList<Location> locations;
     String defaultFrameInputText = "Enter a location...";
     /**
      * Constructor new form WeatherFrame
@@ -140,7 +140,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         
         // Get locations
         LocationParser parser = new LocationParser(city);
-        ArrayList<Location> locations = parser.getOutput();
+        locations = parser.getOutput();
         
         // Populate ComboList
         for (Location l : locations) {
