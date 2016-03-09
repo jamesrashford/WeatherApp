@@ -2,6 +2,7 @@ package net.spacejunkjim.miniproject3;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -36,6 +37,7 @@ public class WeatherFrame extends javax.swing.JFrame {
      */
     public WeatherFrame() {
         initComponents();
+        jPanel1.setVisible(false);
     }
 
     /**
@@ -47,14 +49,35 @@ public class WeatherFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        userInfoLabel1 = new JLabel();
+        jLabel9 = new JLabel();
         appTitle = new JLabel();
         queryLabel = new JLabel();
         queryField = new JTextField();
         getLocationsButton = new JButton();
         locationSelector = new JComboBox<>();
+        userInfo = new JLabel();
         jPanel1 = new JPanel();
-        weatherOutput = new JLabel();
-        userInfoLabel1 = new JLabel();
+        weatherTempField = new JLabel();
+        jPanel2 = new JPanel();
+        windField = new JLabel();
+        windValueField = new JLabel();
+        windSpeedField = new JLabel();
+        windSpeedValueField = new JLabel();
+        humidityField = new JLabel();
+        humidIcon = new JLabel();
+        pressureField = new JLabel();
+        pressureIcon = new JLabel();
+        visibilityField = new JLabel();
+        visibilityValueField = new JLabel();
+        weatherTempField1 = new JLabel();
+
+        userInfoLabel1.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
+        userInfoLabel1.setForeground(new Color(102, 102, 102));
+        userInfoLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        userInfoLabel1.setText("Please enter a location...");
+
+        jLabel9.setText("jLabel9");
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("BBC Weather Observations");
@@ -94,48 +117,97 @@ public class WeatherFrame extends javax.swing.JFrame {
             }
         });
 
+        userInfo.setFont(new Font("Lucida Grande", 0, 14)); // NOI18N
+        userInfo.setForeground(new Color(102, 102, 102));
+        userInfo.setText("Please enter a location...");
+
         jPanel1.setBorder(BorderFactory.createEtchedBorder());
 
-        userInfoLabel1.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
-        userInfoLabel1.setForeground(new Color(102, 102, 102));
-        userInfoLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-        userInfoLabel1.setText("Please enter a location...");
+        weatherTempField.setFont(new Font("Lucida Grande", 0, 48)); // NOI18N
+        weatherTempField.setHorizontalAlignment(SwingConstants.CENTER);
+        weatherTempField.setText("9C");
+
+        jPanel2.setLayout(new GridLayout(5, 2));
+
+        windField.setText("Wind Direction");
+        jPanel2.add(windField);
+
+        windValueField.setHorizontalAlignment(SwingConstants.RIGHT);
+        windValueField.setText("jLabel6");
+        jPanel2.add(windValueField);
+
+        windSpeedField.setText("Wind Speed");
+        jPanel2.add(windSpeedField);
+
+        windSpeedValueField.setHorizontalAlignment(SwingConstants.RIGHT);
+        windSpeedValueField.setText("jLabel3");
+        jPanel2.add(windSpeedValueField);
+
+        humidityField.setText("Humidity");
+        jPanel2.add(humidityField);
+
+        humidIcon.setHorizontalAlignment(SwingConstants.RIGHT);
+        humidIcon.setText("jLabel5");
+        jPanel2.add(humidIcon);
+
+        pressureField.setText("Pressure");
+        jPanel2.add(pressureField);
+
+        pressureIcon.setHorizontalAlignment(SwingConstants.RIGHT);
+        pressureIcon.setText("jLabel8");
+        jPanel2.add(pressureIcon);
+
+        visibilityField.setText("Visibility");
+        jPanel2.add(visibilityField);
+
+        visibilityValueField.setHorizontalAlignment(SwingConstants.RIGHT);
+        visibilityValueField.setText("jLabel11");
+        jPanel2.add(visibilityValueField);
+
+        weatherTempField1.setFont(new Font("Lucida Grande", 0, 48)); // NOI18N
+        weatherTempField1.setHorizontalAlignment(SwingConstants.CENTER);
+        weatherTempField1.setText("ICON");
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(userInfoLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(weatherOutput, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(weatherTempField, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(weatherTempField1, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(weatherOutput)
-                .addGap(109, 109, 109)
-                .addComponent(userInfoLabel1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(weatherTempField, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weatherTempField1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(locationSelector, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(userInfo, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(locationSelector, GroupLayout.Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(queryLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(queryField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(getLocationsButton, GroupLayout.PREFERRED_SIZE, 121, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(getLocationsButton, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(appTitle)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -152,6 +224,8 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(locationSelector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userInfo, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -164,6 +238,9 @@ public class WeatherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_queryFieldActionPerformed
 
     private void getLocationsButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_getLocationsButtonMouseClicked
+        // Show the panel
+        jPanel1.setVisible(true);
+
         // Set info message to invisible
         userInfoLabel1.setVisible(false);
         
@@ -208,7 +285,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         
         WeatherParser parser = new WeatherParser(geonameId);
         System.out.println(parser.getOutput());
-        weatherOutput.setText(parser.getOutput());
+        //weatherOutput.setText(parser.getOutput());
     }
     
     /**
@@ -235,11 +312,25 @@ public class WeatherFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel appTitle;
     private JButton getLocationsButton;
+    private JLabel humidIcon;
+    private JLabel humidityField;
+    private JLabel jLabel9;
     private JPanel jPanel1;
+    private JPanel jPanel2;
     private JComboBox<String> locationSelector;
+    private JLabel pressureField;
+    private JLabel pressureIcon;
     private JTextField queryField;
     private JLabel queryLabel;
+    private JLabel userInfo;
     private JLabel userInfoLabel1;
-    private JLabel weatherOutput;
+    private JLabel visibilityField;
+    private JLabel visibilityValueField;
+    private JLabel weatherTempField;
+    private JLabel weatherTempField1;
+    private JLabel windField;
+    private JLabel windSpeedField;
+    private JLabel windSpeedValueField;
+    private JLabel windValueField;
     // End of variables declaration//GEN-END:variables
 }
