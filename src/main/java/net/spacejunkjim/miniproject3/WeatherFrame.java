@@ -3,6 +3,8 @@ package net.spacejunkjim.miniproject3;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -79,6 +81,11 @@ public class WeatherFrame extends javax.swing.JFrame {
             }
         });
 
+        locationSelector.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                locationSelectorItemStateChanged(evt);
+            }
+        });
         locationSelector.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 locationSelectorActionPerformed(evt);
@@ -90,7 +97,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(weatherOutput, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addComponent(weatherOutput, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -166,20 +173,21 @@ public class WeatherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_getLocationsButtonActionPerformed
 
     private void locationSelectorActionPerformed(ActionEvent evt) {//GEN-FIRST:event_locationSelectorActionPerformed
-        
-        // TODO add your handling code here:
-        // i am here
-        Location l = locations.get(locationSelector.getSelectedIndex());
-        int geonameId = l.getGeonameId();
-        updateWeatherInfoPanel(geonameId);
-        
+        updateWeatherInfoPanel();
     }//GEN-LAST:event_locationSelectorActionPerformed
+
+    private void locationSelectorItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_locationSelectorItemStateChanged
+        updateWeatherInfoPanel();
+    }//GEN-LAST:event_locationSelectorItemStateChanged
     
     /**
      * Updates the GUI with selected weather info
      * @param geonameId 
      */
-    private void updateWeatherInfoPanel(int geonameId) {
+    private void updateWeatherInfoPanel() {
+        Location l = locations.get(locationSelector.getSelectedIndex());
+        int geonameId = l.getGeonameId();
+        
         WeatherParser parser = new WeatherParser(geonameId);
         System.out.println(parser.getOutput());
         weatherOutput.setText(parser.getOutput());
