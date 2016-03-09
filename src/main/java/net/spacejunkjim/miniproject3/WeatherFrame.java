@@ -104,7 +104,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(appURLField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(appForecastButton, GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addComponent(appForecastButton, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                             .addComponent(jComboBox1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
