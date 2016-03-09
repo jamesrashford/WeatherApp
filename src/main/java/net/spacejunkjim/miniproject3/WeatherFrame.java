@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -27,11 +28,14 @@ import javax.swing.WindowConstants;
 
 /**
  * The GUI Frame for Part 2 of the XML Assignment
+ *
  * @author James Ashford, Dorian Dressler
  */
 public class WeatherFrame extends javax.swing.JFrame {
+
     private ArrayList<Location> locations;
     private String defaultFrameInputText = "Enter a location...";
+
     /**
      * Constructor new form WeatherFrame
      */
@@ -238,29 +242,34 @@ public class WeatherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_queryFieldActionPerformed
 
     private void getLocationsButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_getLocationsButtonMouseClicked
-        // Show the panel
-        jPanel1.setVisible(true);
+        // Check if query field is not equal to default message
+        if (!queryField.getText().equals(defaultFrameInputText)) {
+            // Show the panel
+            jPanel1.setVisible(true);
 
-        // Set info message to invisible
-        userInfo.setVisible(false);
-        
-        // Clear ComboBox
-        locationSelector.removeAllItems();
+            // Set info message to invisible
+            userInfo.setVisible(false);
 
-        // Get the city name
-        String city = queryField.getText();
-        
-        // Get locations
-        LocationParser parser = new LocationParser(city);
-        locations = parser.getOutput();
-        
-        // Populate ComboList
-        for (Location l : locations) {
-            locationSelector.addItem(l.getName() + ", " + l.getCountry());
+            // Clear ComboBox
+            locationSelector.removeAllItems();
+
+            // Get the city name
+            String city = queryField.getText();
+
+            // Get locations
+            LocationParser parser = new LocationParser(city);
+            locations = parser.getOutput();
+
+            // Populate ComboList
+            for (Location l : locations) {
+                locationSelector.addItem(l.getName() + ", " + l.getCountry());
+            }
+
+            // Reset query field
+            queryField.setText(defaultFrameInputText);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter a city name.", "Invalid input", JOptionPane.WARNING_MESSAGE);
         }
-        
-        // Reset query field
-        queryField.setText(defaultFrameInputText);
     }//GEN-LAST:event_getLocationsButtonMouseClicked
 
     private void getLocationsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_getLocationsButtonActionPerformed
@@ -274,20 +283,21 @@ public class WeatherFrame extends javax.swing.JFrame {
     private void locationSelectorItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_locationSelectorItemStateChanged
         updateWeatherInfoPanel();
     }//GEN-LAST:event_locationSelectorItemStateChanged
-    
+
     /**
      * Updates the GUI with selected weather info
-     * @param geonameId 
+     *
+     * @param geonameId
      */
     private void updateWeatherInfoPanel() {
         Location l = locations.get(locationSelector.getSelectedIndex());
         int geonameId = l.getGeonameId();
-        
+
         WeatherParser parser = new WeatherParser(geonameId);
         System.out.println(parser.getOutput());
         //weatherOutput.setText(parser.getOutput());
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -304,11 +314,11 @@ public class WeatherFrame extends javax.swing.JFrame {
     /**
      * Method assigns icon to reflect the current weather.
      */
-    private void setWeatherIcon(String comparator){
+    private void setWeatherIcon(String comparator) {
         String fileLocation = WeatherAppUtils.weatherToIcon(comparator);
         //appWeatherIcon.setIcon(new ImageIcon(getClass().getResource(fileLocation)));
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel appTitle;
     private JButton getLocationsButton;
