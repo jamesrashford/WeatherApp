@@ -25,8 +25,8 @@ public class Weather {
      * @param weather a string object containing raw weather data.
      */
     public Weather(String weather) {
+            
         splitWeatherString(weather);
-        //System.out.println(weather);
     }
     
     /**

@@ -10,7 +10,7 @@ public class WeatherTester2 {
 
     public static void main(String[] args) {
 
-        String addressHTTP = "http://open.live.bbc.co.uk/weather/feeds/en/1234/observations.rss";
+        String addressHTTP = "http://open.live.bbc.co.uk/weather/feeds/en/8128721/observations.rss";
         WeatherParser parser = new WeatherParser(addressHTTP);
 
         if (!parser.getOutput().contains("ERROR")) {
