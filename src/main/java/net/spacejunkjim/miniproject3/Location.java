@@ -13,11 +13,13 @@ public class Location {
     private String name;
     private String country;
     private int geonameId;
+    private boolean isLocationFound;
 
     public Location(String name, String country, int geonameId) {
         this.name = name;
         this.country = country;
         this.geonameId = geonameId;
+        this.isLocationFound = false;
     }
 
     public String getName() {
@@ -30,6 +32,16 @@ public class Location {
 
     public int getGeonameId() {
         return geonameId;
+    }
+    
+    public void setLocationFound(boolean isLocationFound){
+        
+        this.isLocationFound = isLocationFound;
+    }
+    
+    public boolean isLocationFound(){
+        
+        return isLocationFound;
     }
     
 }
