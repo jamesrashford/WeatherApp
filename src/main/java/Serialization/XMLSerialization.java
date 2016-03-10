@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,17 +87,16 @@ public class XMLSerialization implements Serializable {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
             Document doc = builder.parse(tempFile);
-            
             Element root = doc.getDocumentElement();
-            root.setAttribute("date", "Thursday");
+            Element searchElement = doc.createElement("search");
             
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
-            
+           
             
             Element dateElement =  doc.createElement("date");
-            dateElement.appendChild(doc.createTextNode("Screw YOU!!!!!"));
-            
-            Element searchElement = doc.createElement("search");
+            dateElement.appendChild(doc.createTextNode(dateFormat.format(date)));
+            searchElement.appendChild(dateElement);
             
             Element termElement = doc.createElement("terms");
             termElement.appendChild(doc.createTextNode(term));
