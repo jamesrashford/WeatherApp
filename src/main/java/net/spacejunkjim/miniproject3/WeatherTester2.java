@@ -12,9 +12,14 @@ public class WeatherTester2 {
     
     public static void main(String[] args){
         
-        String addressHTTP = "http://open.live.bbc.co.uk/weather/feeds/en/2656397/observations.rss";
+        String addressHTTP = "http://open.live.bbc.co.uk/weather/feeds/en/1234/observations.rss";
         WeatherParser parser = new WeatherParser(addressHTTP);
+        
+        
+        
         Weather weatherTester = new Weather(parser.getOutput());
+        
+        
         System.out.print("Testing getTemperature:");
         System.out.println(weatherTester.getTemperature());
         System.out.print("Testing getWindDirection:");
