@@ -15,7 +15,7 @@ public class XMLSerializationTester {
      
         System.out.println("!!!TESTER FOR XMLSERIALIZATION!!!");
         XMLSerialization serializer = new XMLSerialization();
-        serializer.readStream();
+        serializer.writeStream();
         
         
     }
