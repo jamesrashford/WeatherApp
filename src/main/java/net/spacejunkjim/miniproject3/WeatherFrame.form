@@ -59,7 +59,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="queryField" min="-2" pref="154" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="getLocationsButton" max="32767" attributes="0"/>
+                      <Component id="getLocationsButton" pref="168" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="appTitle" min="-2" max="-2" attributes="0"/>
@@ -163,8 +163,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <Component id="tempValueField" max="32767" attributes="0"/>
+                      <Component id="jPanel2" pref="349" max="32767" attributes="0"/>
+                      <Component id="weatherIcon" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tempValueField" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -176,7 +177,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="tempValueField" min="-2" pref="73" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel2" pref="119" max="32767" attributes="0"/>
+                  <Component id="weatherIcon" min="-2" pref="210" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanel2" pref="157" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -251,11 +254,19 @@
             <Component class="javax.swing.JLabel" name="visibilityValueField">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="VISSIBILITY"/>
+                <Property name="text" type="java.lang.String" value="VISIBILITY"/>
               </Properties>
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="weatherIcon">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/simple_weather_icon_01.png"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

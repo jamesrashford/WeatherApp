@@ -1,5 +1,6 @@
 package net.spacejunkjim.miniproject3;
 
+import Serialization.XMLSerialization;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -33,15 +34,17 @@ import javax.swing.WindowConstants;
  * @author James Ashford, Dorian Dressler
  */
 public class WeatherFrame extends javax.swing.JFrame {
-
+    private XMLSerialization serialization;
     private ArrayList<Location> locations;
     private String defaultFrameInputText = "Enter a location...";
+    private String searchTerm;
 
     /**
      * Constructor new form WeatherFrame
      */
     public WeatherFrame() {
         initComponents();
+        serialization = new XMLSerialization();
         jPanel1.setVisible(false);
     }
 
@@ -76,6 +79,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         pressureIcon = new JLabel();
         visibilityField = new JLabel();
         visibilityValueField = new JLabel();
+        weatherIcon = new JLabel();
 
         userInfoLabel1.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
         userInfoLabel1.setForeground(new Color(102, 102, 102));
@@ -168,8 +172,11 @@ public class WeatherFrame extends javax.swing.JFrame {
         jPanel2.add(visibilityField);
 
         visibilityValueField.setHorizontalAlignment(SwingConstants.RIGHT);
-        visibilityValueField.setText("VISSIBILITY");
+        visibilityValueField.setText("VISIBILITY");
         jPanel2.add(visibilityValueField);
+
+        weatherIcon.setHorizontalAlignment(SwingConstants.CENTER);
+        weatherIcon.setIcon(new ImageIcon(getClass().getResource("/simple_weather_icon_01.png"))); // NOI18N
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,8 +184,9 @@ public class WeatherFrame extends javax.swing.JFrame {
             .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tempValueField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(weatherIcon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tempValueField, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -186,7 +194,9 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tempValueField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addComponent(weatherIcon, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -204,7 +214,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(queryField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(getLocationsButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(getLocationsButton, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(appTitle)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -248,17 +258,17 @@ public class WeatherFrame extends javax.swing.JFrame {
             locationSelector.removeAllItems();
 
             // Get the city name
-            String city = queryField.getText();
+            searchTerm = queryField.getText();
 
             // Get locations
-            LocationParser parser = new LocationParser(city);
+            LocationParser parser = new LocationParser(searchTerm);
             locations = parser.getOutput();
 
             // Populate ComboList
             for (Location l : locations) {
                 locationSelector.addItem(l.getName() + ", " + l.getCountry());
             }
-
+            
             // Reset query field
             queryField.setText(defaultFrameInputText);
         } else {
@@ -281,27 +291,33 @@ public class WeatherFrame extends javax.swing.JFrame {
     /**
      * Updates the GUI with selected weather info
      *
-     * @param geonameId
      */
     private void updateWeatherInfoPanel() {
         Location l = locations.get(locationSelector.getSelectedIndex());
         int geonameId = l.getGeonameId();
 
         WeatherParser parser = new WeatherParser(geonameId);
-        if (!parser.getOutput().contains("ERROR")) {
+        boolean locationFounds = parser.getOutput().contains("ERROR");
+        
+        if (!locationFounds) {
             Weather w = new Weather(parser.getOutput());
             System.out.println(parser.getOutput());
-
-            // Update weather info in fields
+            
+            // Update weather info in field
             tempValueField.setText(w.getTemperature());
             windValueField.setText(w.getWindDirection());
             windSpeedValueField.setText(w.getWindSpeed());
             humidIcon.setText(w.getHumidity());
             pressureIcon.setText(w.getPressure());
             visibilityValueField.setText(w.getVisibility());
+            
+            // Get weather icon
+            //weatherIcon.setIcon(new ImageIcon(WeatherAppUtils.getWeatherCondition(searchTerm)));
         } else {
             JOptionPane.showMessageDialog(this, "Location not in BBC database", "Invalid location", JOptionPane.WARNING_MESSAGE);
         }
+        
+        serialization.addSearchItems(searchTerm, locationFounds, geonameId);
     }
 
     /**
@@ -344,6 +360,7 @@ public class WeatherFrame extends javax.swing.JFrame {
     private JLabel userInfoLabel1;
     private JLabel visibilityField;
     private JLabel visibilityValueField;
+    private JLabel weatherIcon;
     private JLabel windField;
     private JLabel windSpeedField;
     private JLabel windSpeedValueField;
