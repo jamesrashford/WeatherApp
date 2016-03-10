@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +19,12 @@ import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -36,6 +39,7 @@ public class XMLSerialization implements Serializable {
     private XMLInputFactory inputFactory;
     private XMLOutputFactory outputFactory;
     private XMLEventFactory eventFactory;
+    String fileName;
 
     public XMLSerialization() {
         inputFactory = XMLInputFactory.newInstance();
@@ -44,7 +48,7 @@ public class XMLSerialization implements Serializable {
 
         try {
             tempFile = java.io.File.createTempFile("loactionsDataTemp", ".xml");
-            String fileName = tempFile.getAbsolutePath();
+            fileName = tempFile.getAbsolutePath();
             System.out.println(fileName);
 
             streamWriter = outputFactory.createXMLStreamWriter(new FileOutputStream(tempFile), "UTF-8");
@@ -99,16 +103,21 @@ public class XMLSerialization implements Serializable {
             searchElement.appendChild(geoNameElement);
             
             root.appendChild(searchElement);
-        } catch (ParserConfigurationException ex) {
+            
+            TransformerFactory transFactory = TransformerFactory.newInstance();
+           
+            Transformer  transformer = transFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(fileName);
+            transformer.transform(source, result);
+    }   catch (ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
+        } catch (TransformerConfigurationException ex) {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (TransformerException ex) {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
     public void writeStream() {
         /*
         URL url = getClass().getResource("data/weatherfile.xml");
