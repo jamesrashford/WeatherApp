@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weatherSearches>
+    <search>
+	<test1>Test1</test1>
+        <test2>Test2</test2>
+	<test3>Test4</test3>
+    </search>
+</weatherSearches>
