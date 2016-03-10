@@ -15,8 +15,10 @@ public class XMLSerializationTester {
      
         System.out.println("!!!TESTER FOR XMLSERIALIZATION!!!");
         XMLSerialization serializer = new XMLSerialization();
-        serializer.writeStream();
         
-        
+        serializer.addSearchItems("A", true, 37394);
+        serializer.addSearchItems("B", false, 37644);
+        serializer.addSearchItems("C", true, 37326);
+        serializer.addSearchItems("D", false, 32549);
     }
 }

@@ -13,28 +13,100 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author James Ashford, Dorian Dressler
  */
 public class XMLSerialization implements Serializable {
-
-    public static final String FILE_NAME = "data/weatherfile.xml";
-    XMLInputFactory inputFactory;
-    XMLOutputFactory outputFactory;
-    XMLEventFactory eventFactory;
+    private File tempFile;
+    private XMLStreamWriter streamWriter;
+    private XMLInputFactory inputFactory;
+    private XMLOutputFactory outputFactory;
+    private XMLEventFactory eventFactory;
 
     public XMLSerialization() {
         inputFactory = XMLInputFactory.newInstance();
         outputFactory = XMLOutputFactory.newInstance();
         eventFactory = XMLEventFactory.newInstance();
+
+        try {
+            tempFile = java.io.File.createTempFile("loactionsDataTemp", ".xml");
+            String fileName = tempFile.getAbsolutePath();
+            System.out.println(fileName);
+
+            streamWriter = outputFactory.createXMLStreamWriter(new FileOutputStream(tempFile), "UTF-8");
+
+        } catch (IOException ex) {
+            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (XMLStreamException ex) {
+            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        createSearchFile();
+    }
+
+    private void createSearchFile() {
+        try {
+            streamWriter.writeStartDocument();
+            streamWriter.writeStartElement("weatherSearches");
+
+            streamWriter.writeEndElement();
+            streamWriter.writeEndDocument();
+            streamWriter.flush();
+            streamWriter.close();
+
+        } catch (XMLStreamException ex) {
+            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addSearchItems(String term, boolean found, int geoNameID) {
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            Document doc = builder.parse(tempFile);
+            
+            Element root = doc.createElement("weatherSearches");
+            root.setAttribute("date", "Thursday");
+            
+            Element searchElement = doc.createElement("search");
+            
+            Element termElement = doc.createElement("terms");
+            termElement.appendChild(doc.createTextNode(term));
+            searchElement.appendChild(termElement);
+            
+            Element foundElement = doc.createElement("found");
+            foundElement.appendChild(doc.createTextNode(String.valueOf(found)));
+            searchElement.appendChild(foundElement);
+
+            Element geoNameElement = doc.createElement("geoNameID");
+            geoNameElement.appendChild(doc.createTextNode(String.valueOf(geoNameID)));
+            searchElement.appendChild(geoNameElement);
+            
+            root.appendChild(searchElement);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public void writeStream() {
@@ -51,14 +123,12 @@ public class XMLSerialization implements Serializable {
         }*/
 
         StringWriter writer = new StringWriter();
-        
-        
-        
+
         try {
             File tempFile = java.io.File.createTempFile("loactionsDataTemp", ".xml");
             String fileName = tempFile.getAbsolutePath();
             System.out.println(fileName);
-            
+
             XMLStreamWriter streamWriter = outputFactory.createXMLStreamWriter(new FileOutputStream(tempFile), "UTF-8");
 
             streamWriter.writeStartDocument();
@@ -82,7 +152,7 @@ public class XMLSerialization implements Serializable {
             streamWriter.writeEndDocument();
             streamWriter.flush();
             streamWriter.close();
-            
+
 //            writer.close();
         } catch (XMLStreamException ex) {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,7 +184,7 @@ public class XMLSerialization implements Serializable {
         } catch (IOException ex) {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+         */
     }
 
     public void readStream() {
