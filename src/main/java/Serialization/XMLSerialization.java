@@ -57,6 +57,7 @@ public class XMLSerialization implements Serializable {
         try {
             File tempFile = java.io.File.createTempFile("loactionsDataTemp", ".xml");
             String fileName = tempFile.getAbsolutePath();
+            System.out.println(fileName);
             
             XMLStreamWriter streamWriter = outputFactory.createXMLStreamWriter(new FileOutputStream(tempFile), "UTF-8");
 
