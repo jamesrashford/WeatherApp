@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -55,6 +56,7 @@ public class WeatherFrame extends javax.swing.JFrame {
 
         userInfoLabel1 = new JLabel();
         jLabel9 = new JLabel();
+        jToggleButton1 = new JToggleButton();
         appTitle = new JLabel();
         queryLabel = new JLabel();
         queryField = new JTextField();
@@ -81,6 +83,8 @@ public class WeatherFrame extends javax.swing.JFrame {
         userInfoLabel1.setText("Please enter a location...");
 
         jLabel9.setText("jLabel9");
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("BBC Weather Observations");
@@ -326,6 +330,7 @@ public class WeatherFrame extends javax.swing.JFrame {
     private JLabel jLabel9;
     private JPanel jPanel1;
     private JPanel jPanel2;
+    private JToggleButton jToggleButton1;
     private JComboBox<String> locationSelector;
     private JLabel pressureField;
     private JLabel pressureIcon;
