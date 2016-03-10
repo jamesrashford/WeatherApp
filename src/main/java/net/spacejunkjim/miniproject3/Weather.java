@@ -15,8 +15,10 @@ import javax.xml.stream.XMLInputFactory;
  */
 public class Weather {
     
-    private Date date; //unused for now
     private ArrayList<String> weatherData;
+    private final String ERROR_FLAG = "ERROR";
+    private boolean locationFound = true;
+    
     
     /**
      * Constructor for Weather Class.
