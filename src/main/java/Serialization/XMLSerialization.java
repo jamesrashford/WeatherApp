@@ -85,7 +85,7 @@ public class XMLSerialization implements Serializable {
 
             Document doc = builder.parse(tempFile);
             
-            Element root = doc.createElement("weatherSearches");
+            Element root = doc.getDocumentElement();
             root.setAttribute("date", "Thursday");
             
             Element searchElement = doc.createElement("search");
