@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.spacejunkjim.miniproject3;
 
 import java.io.FileNotFoundException;
@@ -10,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -23,8 +17,12 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author jamesashford
+ * ICP 2052 - Mini Project 3: XML
+ * Class: WeatherParser
+ * Date: 09/03/2016
+ * Purpose: Parses the BBC RSS Weather feed XML.
+ * 
+ * @author James Ashford, Dorian Dressler
  */
 public class WeatherParser {
 
@@ -32,6 +30,10 @@ public class WeatherParser {
     private String title;
     private String desciption;
 
+    /**
+     * Constructor
+     * @param addressHTTP the address of the feed
+     */
     public WeatherParser(String addressHTTP) {
         // Set invalid code to null
         inavlidCode = false;
@@ -61,6 +63,10 @@ public class WeatherParser {
         desciption = parseDesciption(doc);
     }
 
+    /**
+     * Parses XML document
+     * @param locationCode Location ID supplied by caller
+     */
     public WeatherParser(int locationCode) {
         // Create a document builder using factory
         DocumentBuilder builder = getDocumentBuilder();
@@ -86,14 +92,26 @@ public class WeatherParser {
         desciption = parseDesciption(doc);
     }
 
+    /**
+     * Getter method for XML Title
+     * @return parsed XML Title
+     */
     public String getTitle() {
         return title;
     }
     
+    /**
+     * Getter method for XML Description
+     * @return parsed XML Description
+     */
     public String getDesciption() {
         return desciption;
     }
 
+    /**
+     * 
+     * @return 
+     */
     private DocumentBuilder getDocumentBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
@@ -106,6 +124,11 @@ public class WeatherParser {
         return builder;
     }
 
+    /**
+     * 
+     * @param address
+     * @return 
+     */
     private URL getURL(String address) {
         URL url = null;
         try {
@@ -117,6 +140,11 @@ public class WeatherParser {
         return url;
     }
 
+    /**
+     * 
+     * @param locationCode
+     * @return 
+     */
     private URL getURL(int locationCode) {
         String code = String.valueOf(locationCode);
         URL url = null;
@@ -127,7 +155,12 @@ public class WeatherParser {
         }
         return url;
     }
-
+    
+    /**
+     * 
+     * @param doc
+     * @return 
+     */
     private String parseTitle(Document doc) {
         if (!inavlidCode) {
             // Create new XPath using factory
@@ -149,6 +182,11 @@ public class WeatherParser {
         }
     }
     
+    /**
+     * 
+     * @param doc
+     * @return 
+     */
     private String parseDesciption(Document doc) {
         if (!inavlidCode) {
             // Create new XPath using factory

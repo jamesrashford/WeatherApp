@@ -4,7 +4,7 @@ package net.spacejunkjim.miniproject3;
  * ICP 2052 - Mini Project 3: XML Class: WeatherTester2 Date: 09/03/2016
  * Purpose: Test harness for Weather class.
  *
- * @author James Ashford, Dorian Dressler (eeu436)
+ * @author James Ashford, Dorian Dressler
  */
 public class WeatherTester2 {
 

@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.spacejunkjim.miniproject3;
 
 /**
- *
- * @author jamesashford
+ * ICP 2052 - Mini Project 3: XML
+ * Class: WeatherTester
+ * Date: 09/03/2016
+ * Purpose: Testing Harness, testing parser for multiple locations.
+ * 
+ * @author James Ashford, Dorian Dressler
  */
 public class WeatherTester {
 
@@ -41,9 +40,6 @@ public class WeatherTester {
         String addressHTTP = "http://open.live.bbc.co.uk/weather/feeds/en/2656397/observations.rss";
         WeatherParser parser = new WeatherParser(addressHTTP);
         
-        // Print output
-        //String output = parser.getOutput();
-        //System.out.println(output);
     }
     
 }

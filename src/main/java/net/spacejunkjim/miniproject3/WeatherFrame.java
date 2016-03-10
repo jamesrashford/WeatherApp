@@ -12,7 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,8 +19,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle;
@@ -245,6 +242,10 @@ public class WeatherFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_queryFieldActionPerformed
 
+    /**
+     * Event handler for getLocation button in gui
+     * @param evt the event
+     */
     private void getLocationsButtonMouseClicked(MouseEvent evt) {//GEN-FIRST:event_getLocationsButtonMouseClicked
         // Check if query field is not equal to default message
         if (!queryField.getText().equals(defaultFrameInputText)) {
@@ -276,6 +277,10 @@ public class WeatherFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_getLocationsButtonMouseClicked
 
+    /**
+     * 
+     * @param evt 
+     */
     private void getLocationsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_getLocationsButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_getLocationsButtonActionPerformed

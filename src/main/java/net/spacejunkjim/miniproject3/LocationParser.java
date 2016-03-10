@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.spacejunkjim.miniproject3;
 
 import java.io.IOException;
@@ -20,18 +15,26 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author jamesashford
+ * ICP 2052 - Mini Project 3: XML
+ * Class: LocationParser
+ * Date: 09/03/2016
+ * Purpose: Class parses results from BBC RSS Weather feed for available locations.
+ * Used in dropdown menu
+ * 
+ * @author James Ashford, Dorian Dressler
  */
 public class LocationParser {
     private static final String GEONAMES_USERNAME = "spacejunkjim";
     private ArrayList<Location> output;
     
+    /**
+     * 
+     * @param location 
+     */
     public LocationParser(String location) {
         // Create a document builder using factory
         DocumentBuilder builder = getDocumentBuilder();
@@ -53,6 +56,10 @@ public class LocationParser {
         output = parse(doc);
     }
     
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Location> getOutput() {
         return output;
     }
@@ -69,6 +76,11 @@ public class LocationParser {
         return builder;
     }
     
+    /**
+     * 
+     * @param location
+     * @return 
+     */
     private URL getURL(String location) {
         URL url = null;
         try {
@@ -82,7 +94,11 @@ public class LocationParser {
         
         return url;
     }
-    
+    /**
+     * 
+     * @param doc
+     * @return 
+     */
     private ArrayList<Location> parse(Document doc) {
         // Create new XPath using factory
         XPathFactory xpfactory = XPathFactory.newInstance();
@@ -108,5 +124,4 @@ public class LocationParser {
         // Return the title
         return output;
     }
-    
 }

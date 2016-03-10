@@ -1,18 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.spacejunkjim.miniproject3;
 
-import java.io.InputStream;
-
 /**
- *
- * @author jamesashford
+ * ICP 2052 - Mini Project 3: XML
+ * Class: WeatherAppUtils
+ * Date: 09/03/2016
+ * Purpose: Class matches strings to assign appropriate weather icons.
+ * 
+ * @author James Ashford, Dorian Dressler
  */
 public class WeatherAppUtils {
     
+    /**
+     * Splits the raw weather description String
+     * @param weather String containing raw weather condition data.
+     * @return a parsed string.
+     */
     public static String getWeatherCondition(String weather) {
         String part1 = weather.split(": ")[1];
         String condition = part1.split(", ")[0];
@@ -20,6 +22,11 @@ public class WeatherAppUtils {
         return condition;
     }
     
+    /**
+     * 
+     * @param comparator the String to parse.
+     * @return the location of the icon file.
+     */
     public static String weatherToIcon(String comparator) {
         System.out.println("WeatherAppUtils " + comparator);
         String fileLocation = "";

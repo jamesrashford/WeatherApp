@@ -6,16 +6,21 @@
 package Serialization;
 
 /**
- *
- * @author Acer
+ * ICP 2052 - Mini Project 3: XML
+ * Class: XMLSerializationTester
+ * Date: 09/03/2016
+ * Purpose: Testing harness for XMLSerialization class
+ * 
+ * @author James Ashford, Dorian Dressler
  */
 public class XMLSerializationTester {
     
     public static void main(String[] args){
      
-        System.out.println("!!!TESTER FOR XMLSERIALIZATION!!!");
+        System.out.println("TESTER FOR XMLSerialization Class");
         XMLSerialization serializer = new XMLSerialization();
         
+        //values to be added to temporary xml file
         serializer.addSearchItems("A", true, 37394);
         serializer.addSearchItems("B", false, 37644);
         serializer.addSearchItems("C", true, 37326);

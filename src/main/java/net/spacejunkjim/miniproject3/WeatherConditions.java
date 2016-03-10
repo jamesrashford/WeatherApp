@@ -1,24 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.spacejunkjim.miniproject3;
 
 /**
- *
- * @author jamesashford
+ * ICP 2052 - Mini Project 3: XML
+ * Class: WeatherConditions
+ * Date: 09/03/2016
+ * Purpose: Class Contains stored strings for weather conditions.
+ * 
+ * @author James Ashford, Dorian Dressler
  */
 public class WeatherConditions {
     public static final String WEATHER_SWUNNY_DAY = "Sunny";
     public static final String WEATHER_PARTLY_CLOUDY = "Partly cloudy (night)";
     public static final String WEATHER_SUNNY_INTERVALS = "Sunny Intervals";
     public static final String WEATHER_MEDIUM_CLOUD = "White Medium Level Cloud";
-    public static final String WEATHER_BLACK_LOW_LEVEL_CLOUD = "cloud";
+    public static final String WEATHER_BLACK_LOW_LEVEL_CLOUD = "Cloud";
     public static final String WEATHER_LIGHT_RAIN_SHOWER_NIGHT = "light rain shower (night)";
     public static final String WEATHER_LIGHT_RAIN_SHOWER_DAY = "light rain shower (day)";
-    public static final String WEATHER_DRIZZLE = "drizzle";
-    public static final String WEATHER_LIGHT_RAIN_DAY_NIGHT = "light rain day or night";
+    public static final String WEATHER_DRIZZLE = "Drizzle";
+    public static final String WEATHER_LIGHT_RAIN_DAY_NIGHT = "Light Rain Day Or Night";
     public static final String WEATHER_HEAVY_RAIN_SHOWER_NIGHT = "heavy rain shower (night)";
     public static final String WEATHER_HEAVY_RAIN_SHOWER_DAY = "heavy rain shower (day)";
     public static final String WEATHER_HEAVY_RAIN = "heavy rain";

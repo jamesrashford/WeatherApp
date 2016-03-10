@@ -1,13 +1,9 @@
 package Serialization;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.io.StringWriter;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +16,6 @@ import javax.xml.stream.XMLEventFactory;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -33,17 +28,25 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 /**
- *
+ * ICP 2052 - Mini Project 3: XML
+ * Class: XMLSerialization
+ * Date: 09/03/2016
+ * Purpose: Serializes received Weather Data into a temporary XML File.
+ * 
  * @author James Ashford, Dorian Dressler
  */
 public class XMLSerialization implements Serializable {
+    
     private File tempFile;
     private XMLStreamWriter streamWriter;
     private XMLInputFactory inputFactory;
     private XMLOutputFactory outputFactory;
     private XMLEventFactory eventFactory;
     String fileName;
-
+    
+    /**
+     * Constructor for XMLSerialization.
+     */
     public XMLSerialization() {
         inputFactory = XMLInputFactory.newInstance();
         outputFactory = XMLOutputFactory.newInstance();
@@ -61,10 +64,13 @@ public class XMLSerialization implements Serializable {
         } catch (XMLStreamException ex) {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         createSearchFile();
     }
-
+    
+    /**
+     * Creates Start and End Document Tags skeleton for XML data,
+     * at program start.
+     */
     private void createSearchFile() {
         try {
             streamWriter.writeStartDocument();
@@ -79,7 +85,14 @@ public class XMLSerialization implements Serializable {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Constructs XML document, containing date along with supplied search 
+     * parameters. Appends to skeleton created in createSearchFile method.
+     * @param term user's supplied search term
+     * @param found boolean, indicating whether location has been found
+     * @param geoNameID geoName ID of location, if found.
+     */
     public void addSearchItems(String term, boolean found, int geoNameID) {
 
         try {
@@ -123,102 +136,70 @@ public class XMLSerialization implements Serializable {
             Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void writeStream() {
-        /*
-        URL url = getClass().getResource("data/weatherfile.xml");
-        File f = new File(url.getPath());
-        try {
-            FileOutputStream fos = new FileOutputStream(f);
-            XMLStreamWriter writer = outputFactory.createXMLStreamWriter(fos);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (XMLStreamException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-
-        StringWriter writer = new StringWriter();
-
-        try {
-            File tempFile = java.io.File.createTempFile("loactionsDataTemp", ".xml");
-            String fileName = tempFile.getAbsolutePath();
-            System.out.println(fileName);
-
-            XMLStreamWriter streamWriter = outputFactory.createXMLStreamWriter(new FileOutputStream(tempFile), "UTF-8");
-
-            streamWriter.writeStartDocument();
-            streamWriter.writeStartElement("weatherSearches");
-            streamWriter.writeStartElement("search");
-            streamWriter.writeAttribute("date", "Thursday");
-
-            streamWriter.writeStartElement("term");
-            streamWriter.writeCharacters("Entered search term...");
-            streamWriter.writeEndElement();
-
-            streamWriter.writeStartElement("found");
-            streamWriter.writeCharacters("true/false");
-            streamWriter.writeEndElement();
-
-            streamWriter.writeStartElement("geoNameID");
-            streamWriter.writeCharacters("filled in if found");
-            streamWriter.writeEndElement();
-
-            streamWriter.writeEndElement();
-            streamWriter.writeEndDocument();
-            streamWriter.flush();
-            streamWriter.close();
-
-//            writer.close();
-        } catch (XMLStreamException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        /*
-        String xmlString = writer.getBuffer().toString();
-        
-        try {
-            
-        } catch (IOException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        System.out.println(xmlString);
-        
-        PrintWriter printWriter;
-        try {
-            
-            
-            printWriter = new PrintWriter(f);
-            printWriter.write(xmlString);
-            printWriter.close();
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         */
-    }
-
-    public void readStream() {
-        URL url = getClass().getResource("data/weatherfile.xml");
-        File f = new File(url.getPath());
-        FileInputStream fis;
-
-        try {
-            fis = new FileInputStream(f);
-            XMLStreamReader reader = inputFactory.createXMLStreamReader(fis);
-            while (reader.hasNext()) {
-
-                System.out.println(reader.next());
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (XMLStreamException ex) {
-            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+    
+    /**
+     * 
+     */
+//    public void writeStream() {
+//       
+//        try {
+//            File tempFile = java.io.File.createTempFile("loactionsDataTemp", ".xml");
+//            String fileName = tempFile.getAbsolutePath();
+//            System.out.println(fileName);
+//
+//            XMLStreamWriter streamWriter = outputFactory.createXMLStreamWriter(new FileOutputStream(tempFile), "UTF-8");
+//
+//            streamWriter.writeStartDocument();
+//            streamWriter.writeStartElement("weatherSearches");
+//            streamWriter.writeStartElement("search");
+//            streamWriter.writeAttribute("date", "Thursday");
+//
+//            streamWriter.writeStartElement("term");
+//            streamWriter.writeCharacters("Entered search term...");
+//            streamWriter.writeEndElement();
+//
+//            streamWriter.writeStartElement("found");
+//            streamWriter.writeCharacters("true/false");
+//            streamWriter.writeEndElement();
+//
+//            streamWriter.writeStartElement("geoNameID");
+//            streamWriter.writeCharacters("filled in if found");
+//            streamWriter.writeEndElement();
+//
+//            streamWriter.writeEndElement();
+//            streamWriter.writeEndDocument();
+//            streamWriter.flush();
+//            streamWriter.close();
+//
+////            writer.close();
+//        } catch (XMLStreamException ex) {
+//            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    
+//    /**
+//     * 
+//     */
+//    public void readStream() {
+//        URL url = getClass().getResource("data/weatherfile.xml");
+//        File f = new File(url.getPath());
+//        FileInputStream fis;
+//
+//        try {
+//            fis = new FileInputStream(f);
+//            XMLStreamReader reader = inputFactory.createXMLStreamReader(fis);
+//            while (reader.hasNext()) {
+//
+//                System.out.println(reader.next());
+//            }
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (XMLStreamException ex) {
+//            Logger.getLogger(XMLSerialization.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 
 }

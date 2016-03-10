@@ -1,8 +1,6 @@
 package net.spacejunkjim.miniproject3;
 
 import java.util.ArrayList;
-import java.util.Date;
-import javax.xml.stream.XMLInputFactory;
 
 /**
  * ICP 2052 - Mini Project 3: XML
