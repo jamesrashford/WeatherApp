@@ -54,7 +54,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="queryField" min="-2" pref="154" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="getLocationsButton" pref="140" max="32767" attributes="0"/>
+                      <Component id="getLocationsButton" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="appTitle" min="-2" max="-2" attributes="0"/>
@@ -159,11 +159,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="weatherTempField" min="-2" pref="152" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="weatherTempField1" min="-2" pref="152" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="tempValueField" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -173,22 +169,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="weatherTempField" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                      <Component id="weatherTempField1" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="tempValueField" min="-2" pref="73" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel2" pref="123" max="32767" attributes="0"/>
+                  <Component id="jPanel2" pref="119" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="weatherTempField">
+        <Component class="javax.swing.JLabel" name="tempValueField">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Grande" size="48" style="0"/>
+              <Font name="Lucida Grande" size="36" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="9C"/>
@@ -258,15 +251,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="weatherTempField1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Grande" size="48" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="ICON"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

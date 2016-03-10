@@ -62,7 +62,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         locationSelector = new JComboBox<>();
         userInfo = new JLabel();
         jPanel1 = new JPanel();
-        weatherTempField = new JLabel();
+        tempValueField = new JLabel();
         jPanel2 = new JPanel();
         windField = new JLabel();
         windValueField = new JLabel();
@@ -74,7 +74,6 @@ public class WeatherFrame extends javax.swing.JFrame {
         pressureIcon = new JLabel();
         visibilityField = new JLabel();
         visibilityValueField = new JLabel();
-        weatherTempField1 = new JLabel();
 
         userInfoLabel1.setFont(new Font("Lucida Grande", 0, 18)); // NOI18N
         userInfoLabel1.setForeground(new Color(102, 102, 102));
@@ -127,9 +126,9 @@ public class WeatherFrame extends javax.swing.JFrame {
 
         jPanel1.setBorder(BorderFactory.createEtchedBorder());
 
-        weatherTempField.setFont(new Font("Lucida Grande", 0, 48)); // NOI18N
-        weatherTempField.setHorizontalAlignment(SwingConstants.CENTER);
-        weatherTempField.setText("9C");
+        tempValueField.setFont(new Font("Lucida Grande", 0, 36)); // NOI18N
+        tempValueField.setHorizontalAlignment(SwingConstants.CENTER);
+        tempValueField.setText("9C");
 
         jPanel2.setLayout(new GridLayout(5, 2));
 
@@ -168,10 +167,6 @@ public class WeatherFrame extends javax.swing.JFrame {
         visibilityValueField.setText("jLabel11");
         jPanel2.add(visibilityValueField);
 
-        weatherTempField1.setFont(new Font("Lucida Grande", 0, 48)); // NOI18N
-        weatherTempField1.setHorizontalAlignment(SwingConstants.CENTER);
-        weatherTempField1.setText("ICON");
-
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -179,20 +174,15 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(weatherTempField, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(weatherTempField1, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(tempValueField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(weatherTempField, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(weatherTempField1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
+                .addComponent(tempValueField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -210,7 +200,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(queryField, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(getLocationsButton, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                        .addComponent(getLocationsButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(appTitle)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -294,8 +284,17 @@ public class WeatherFrame extends javax.swing.JFrame {
         int geonameId = l.getGeonameId();
 
         WeatherParser parser = new WeatherParser(geonameId);
+        Weather w = new Weather(parser.getOutput());
         System.out.println(parser.getOutput());
         //weatherOutput.setText(parser.getOutput());
+        
+        // Update weather info in fields
+        tempValueField.setText(w.getTemperature());
+        windValueField.setText(w.getWindDirection());
+        windSpeedValueField.setText(w.getWindSpeed());
+        humidIcon.setText(w.getHumidity());
+        pressureIcon.setText(w.getPressure());
+        visibilityValueField.setText(w.getVisibility());
     }
 
     /**
@@ -332,12 +331,11 @@ public class WeatherFrame extends javax.swing.JFrame {
     private JLabel pressureIcon;
     private JTextField queryField;
     private JLabel queryLabel;
+    private JLabel tempValueField;
     private JLabel userInfo;
     private JLabel userInfoLabel1;
     private JLabel visibilityField;
     private JLabel visibilityValueField;
-    private JLabel weatherTempField;
-    private JLabel weatherTempField1;
     private JLabel windField;
     private JLabel windSpeedField;
     private JLabel windSpeedValueField;
