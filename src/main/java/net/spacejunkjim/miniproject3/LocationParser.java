@@ -32,8 +32,8 @@ public class LocationParser {
     private ArrayList<Location> output;
     
     /**
-     * 
-     * @param location 
+     * Creates a new XML parser for Geonames Location RSS services
+     * @param location A geographical position
      */
     public LocationParser(String location) {
         // Create a document builder using factory
@@ -57,13 +57,17 @@ public class LocationParser {
     }
     
     /**
-     * 
-     * @return 
+     * Gets an ArrayList of Location objects which match the constructor query
+     * @return ArrayList<Location> List of locations
      */
     public ArrayList<Location> getOutput() {
         return output;
     }
     
+    /**
+     * Generates a new DocumentBuilder class
+     * @return DocumentBuilder
+     */
     private DocumentBuilder getDocumentBuilder() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
@@ -77,9 +81,9 @@ public class LocationParser {
     }
     
     /**
-     * 
-     * @param location
-     * @return 
+     * Gets the URL needed to form the search
+     * @param location Geographical position
+     * @return URL of XML results
      */
     private URL getURL(String location) {
         URL url = null;
@@ -94,8 +98,9 @@ public class LocationParser {
         
         return url;
     }
+    
     /**
-     * 
+     * Generates an ArrayList of Location items from the resulting XML document at URL
      * @param doc
      * @return 
      */

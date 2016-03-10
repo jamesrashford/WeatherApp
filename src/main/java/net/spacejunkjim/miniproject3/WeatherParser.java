@@ -109,7 +109,7 @@ public class WeatherParser {
     }
 
     /**
-     * 
+     * Generates a new DocumentBuilder class
      * @return 
      */
     private DocumentBuilder getDocumentBuilder() {
@@ -125,7 +125,7 @@ public class WeatherParser {
     }
 
     /**
-     * 
+     * Generates a new URL using HTTP Address
      * @param address
      * @return 
      */
@@ -141,7 +141,7 @@ public class WeatherParser {
     }
 
     /**
-     * 
+     * Generates a new URL using location code
      * @param locationCode
      * @return 
      */
@@ -157,7 +157,7 @@ public class WeatherParser {
     }
     
     /**
-     * 
+     * Gets the "<title>" element of BBC Weather observation RSS Feed
      * @param doc
      * @return 
      */
@@ -183,7 +183,7 @@ public class WeatherParser {
     }
     
     /**
-     * 
+     * Gets the "<description>" element of BBC Weather observation RSS Feed
      * @param doc
      * @return 
      */
