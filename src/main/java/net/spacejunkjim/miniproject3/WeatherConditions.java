@@ -9,17 +9,17 @@ package net.spacejunkjim.miniproject3;
  * @author James Ashford, Dorian Dressler
  */
 public class WeatherConditions {
-    public static final String WEATHER_SWUNNY_DAY = "Sunny";
-    public static final String WEATHER_PARTLY_CLOUDY = "Partly cloudy (night)";
-    public static final String WEATHER_SUNNY_INTERVALS = "Sunny Intervals";
-    public static final String WEATHER_MEDIUM_CLOUD = "White Medium Level Cloud";
-    public static final String WEATHER_BLACK_LOW_LEVEL_CLOUD = "Cloud";
+    public static final String WEATHER_SWUNNY_DAY = "sun";
+    public static final String WEATHER_PARTLY_CLOUDY = "partly cloudy (night)";
+    public static final String WEATHER_SUNNY_INTERVALS = "sunny Intervals";
+    public static final String WEATHER_MEDIUM_CLOUD = "thick Cloud";
+    public static final String WEATHER_BLACK_LOW_LEVEL_CLOUD = "cloud";
     public static final String WEATHER_LIGHT_RAIN_SHOWER_NIGHT = "light rain shower (night)";
     public static final String WEATHER_LIGHT_RAIN_SHOWER_DAY = "light rain shower (day)";
-    public static final String WEATHER_DRIZZLE = "Drizzle";
-    public static final String WEATHER_LIGHT_RAIN_DAY_NIGHT = "Light Rain Day Or Night";
+    public static final String WEATHER_DRIZZLE = "drizzle";
+    public static final String WEATHER_LIGHT_RAIN_DAY_NIGHT = "light rain day or night";
     public static final String WEATHER_HEAVY_RAIN_SHOWER_NIGHT = "heavy rain shower (night)";
-    public static final String WEATHER_HEAVY_RAIN_SHOWER_DAY = "heavy rain shower (day)";
+    public static final String WEATHER_HEAVY_RAIN_SHOWER_DAY = "heavy rain";
     public static final String WEATHER_HEAVY_RAIN = "heavy rain";
     public static final String WEATHER_SLEET_SHOWER_NIGHT = "sleet shower (night)";
     public static final String WEATHER_SLEET_SHOWER_DAY = "sleet shower (day)";
@@ -38,7 +38,7 @@ public class WeatherConditions {
     public static final String WEATHER_THUNDERSTORMS = "thunderstorms";
     public static final String WEATHER_CLEAR_SKY_NIGHT = "clear sky (night)";
     public static final String WEATHER_SANDSTORM = "sandstorm";
-    public static final String WEATHER_MIST_DAY = "mist day";
+    public static final String WEATHER_MIST_DAY = "mist";
     public static final String WEATHER_MIST_NIGHT = "mist night";
     public static final String WEATHER_FOG_DAY = "fog day";
     public static final String WEATHER_FOG_NIGHT = "fog night";

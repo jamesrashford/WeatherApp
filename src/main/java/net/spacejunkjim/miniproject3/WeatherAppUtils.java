@@ -28,6 +28,7 @@ public class WeatherAppUtils {
      * @return the location of the icon file.
      */
     public static String weatherToIcon(String comparator) {
+        comparator = comparator.toLowerCase();
         System.out.println("WeatherAppUtils " + comparator);
         String fileLocation = "";
         
@@ -116,7 +117,7 @@ public class WeatherAppUtils {
             fileLocation = "/simple_weather_icon_01.png";
         }
         if(comparator.contains(WeatherConditions.WEATHER_MIST_DAY)){
-            fileLocation = "/simple_weather_icon_01.png";
+            fileLocation = "/simple_weather_icon_10.png";
         }
         if(comparator.contains(WeatherConditions.WEATHER_FOG_DAY)){
             fileLocation = "/simple_weather_icon_10.png";
