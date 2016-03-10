@@ -32,8 +32,8 @@ public class WeatherTester {
         WeatherParser parser = new WeatherParser(code);
         
         // Print output
-        String output = parser.getOutput();
-        System.out.println(output);
+        //String output = parser.getOutput();
+        //System.out.println(output);
     }
     
     private static void testTwo() {
@@ -42,8 +42,8 @@ public class WeatherTester {
         WeatherParser parser = new WeatherParser(addressHTTP);
         
         // Print output
-        String output = parser.getOutput();
-        System.out.println(output);
+        //String output = parser.getOutput();
+        //System.out.println(output);
     }
     
 }

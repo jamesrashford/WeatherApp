@@ -64,7 +64,7 @@ public class WeatherFrame extends javax.swing.JFrame {
         queryLabel = new JLabel();
         queryField = new JTextField();
         getLocationsButton = new JButton();
-        locationSelector = new JComboBox<>();
+        locationSelector = new JComboBox<String>();
         userInfo = new JLabel();
         jPanel1 = new JPanel();
         tempValueField = new JLabel();
@@ -194,7 +194,7 @@ public class WeatherFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tempValueField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(weatherIcon, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+                .addComponent(weatherIcon, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addContainerGap())
@@ -311,8 +311,9 @@ public class WeatherFrame extends javax.swing.JFrame {
             pressureIcon.setText(w.getPressure());
             visibilityValueField.setText(w.getVisibility());
             
-            // Get weather icon
-            //weatherIcon.setIcon(new ImageIcon(WeatherAppUtils.getWeatherCondition(searchTerm)));
+            // Set weather icon
+            String condition = WeatherAppUtils.getWeatherCondition(parser.getTitle());
+            setWeatherIcon(condition);
         } else {
             JOptionPane.showMessageDialog(this, "Location not in BBC database", "Invalid location", JOptionPane.WARNING_MESSAGE);
         }
@@ -338,7 +339,7 @@ public class WeatherFrame extends javax.swing.JFrame {
      */
     private void setWeatherIcon(String comparator) {
         String fileLocation = WeatherAppUtils.weatherToIcon(comparator);
-        //appWeatherIcon.setIcon(new ImageIcon(getClass().getResource(fileLocation)));
+        weatherIcon.setIcon(new ImageIcon(getClass().getResource(fileLocation)));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

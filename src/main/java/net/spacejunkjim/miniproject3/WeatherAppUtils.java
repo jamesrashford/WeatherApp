@@ -21,6 +21,7 @@ public class WeatherAppUtils {
     }
     
     public static String weatherToIcon(String comparator) {
+        System.out.println("WeatherAppUtils " + comparator);
         String fileLocation = "";
         
         if(comparator.contains("null")){ //test case

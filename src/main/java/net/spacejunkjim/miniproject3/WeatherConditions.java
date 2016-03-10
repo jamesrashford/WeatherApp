@@ -14,7 +14,7 @@ public class WeatherConditions {
     public static final String WEATHER_PARTLY_CLOUDY = "Partly cloudy (night)";
     public static final String WEATHER_SUNNY_INTERVALS = "Sunny Intervals";
     public static final String WEATHER_MEDIUM_CLOUD = "White Medium Level Cloud";
-    public static final String WEATHER_BLACK_LOW_LEVEL_CLOUD = "black low level cloud";
+    public static final String WEATHER_BLACK_LOW_LEVEL_CLOUD = "cloud";
     public static final String WEATHER_LIGHT_RAIN_SHOWER_NIGHT = "light rain shower (night)";
     public static final String WEATHER_LIGHT_RAIN_SHOWER_DAY = "light rain shower (day)";
     public static final String WEATHER_DRIZZLE = "drizzle";
