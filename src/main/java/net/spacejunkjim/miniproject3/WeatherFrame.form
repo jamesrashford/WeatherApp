@@ -207,7 +207,7 @@
             <Component class="javax.swing.JLabel" name="windValueField">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="jLabel6"/>
+                <Property name="text" type="java.lang.String" value="WIND"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="windSpeedField">
@@ -218,7 +218,7 @@
             <Component class="javax.swing.JLabel" name="windSpeedValueField">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="jLabel3"/>
+                <Property name="text" type="java.lang.String" value="WIND-SPEED"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="humidityField">
@@ -229,7 +229,7 @@
             <Component class="javax.swing.JLabel" name="humidIcon">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="jLabel5"/>
+                <Property name="text" type="java.lang.String" value="HUMIDITY"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="pressureField">
@@ -240,7 +240,7 @@
             <Component class="javax.swing.JLabel" name="pressureIcon">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="jLabel8"/>
+                <Property name="text" type="java.lang.String" value="PRESSURE"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="visibilityField">
@@ -251,7 +251,7 @@
             <Component class="javax.swing.JLabel" name="visibilityValueField">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="jLabel11"/>
+                <Property name="text" type="java.lang.String" value="VISSIBILITY"/>
               </Properties>
             </Component>
           </SubComponents>

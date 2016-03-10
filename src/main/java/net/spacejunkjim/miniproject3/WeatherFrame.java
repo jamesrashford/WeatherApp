@@ -140,35 +140,35 @@ public class WeatherFrame extends javax.swing.JFrame {
         jPanel2.add(windField);
 
         windValueField.setHorizontalAlignment(SwingConstants.RIGHT);
-        windValueField.setText("jLabel6");
+        windValueField.setText("WIND");
         jPanel2.add(windValueField);
 
         windSpeedField.setText("Wind Speed");
         jPanel2.add(windSpeedField);
 
         windSpeedValueField.setHorizontalAlignment(SwingConstants.RIGHT);
-        windSpeedValueField.setText("jLabel3");
+        windSpeedValueField.setText("WIND-SPEED");
         jPanel2.add(windSpeedValueField);
 
         humidityField.setText("Humidity");
         jPanel2.add(humidityField);
 
         humidIcon.setHorizontalAlignment(SwingConstants.RIGHT);
-        humidIcon.setText("jLabel5");
+        humidIcon.setText("HUMIDITY");
         jPanel2.add(humidIcon);
 
         pressureField.setText("Pressure");
         jPanel2.add(pressureField);
 
         pressureIcon.setHorizontalAlignment(SwingConstants.RIGHT);
-        pressureIcon.setText("jLabel8");
+        pressureIcon.setText("PRESSURE");
         jPanel2.add(pressureIcon);
 
         visibilityField.setText("Visibility");
         jPanel2.add(visibilityField);
 
         visibilityValueField.setHorizontalAlignment(SwingConstants.RIGHT);
-        visibilityValueField.setText("jLabel11");
+        visibilityValueField.setText("VISSIBILITY");
         jPanel2.add(visibilityValueField);
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -249,8 +249,6 @@ public class WeatherFrame extends javax.swing.JFrame {
 
             // Get the city name
             String city = queryField.getText();
-            
-            // 
 
             // Get locations
             LocationParser parser = new LocationParser(city);
@@ -290,17 +288,20 @@ public class WeatherFrame extends javax.swing.JFrame {
         int geonameId = l.getGeonameId();
 
         WeatherParser parser = new WeatherParser(geonameId);
-        Weather w = new Weather(parser.getOutput());
-        System.out.println(parser.getOutput());
-        //weatherOutput.setText(parser.getOutput());
-        
-        // Update weather info in fields
-        tempValueField.setText(w.getTemperature());
-        windValueField.setText(w.getWindDirection());
-        windSpeedValueField.setText(w.getWindSpeed());
-        humidIcon.setText(w.getHumidity());
-        pressureIcon.setText(w.getPressure());
-        visibilityValueField.setText(w.getVisibility());
+        if (!parser.getOutput().contains("ERROR")) {
+            Weather w = new Weather(parser.getOutput());
+            System.out.println(parser.getOutput());
+
+            // Update weather info in fields
+            tempValueField.setText(w.getTemperature());
+            windValueField.setText(w.getWindDirection());
+            windSpeedValueField.setText(w.getWindSpeed());
+            humidIcon.setText(w.getHumidity());
+            pressureIcon.setText(w.getPressure());
+            visibilityValueField.setText(w.getVisibility());
+        } else {
+            JOptionPane.showMessageDialog(this, "Location not in BBC database", "Invalid location", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
