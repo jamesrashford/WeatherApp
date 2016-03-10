@@ -249,6 +249,8 @@ public class WeatherFrame extends javax.swing.JFrame {
 
             // Get the city name
             String city = queryField.getText();
+            
+            // 
 
             // Get locations
             LocationParser parser = new LocationParser(city);

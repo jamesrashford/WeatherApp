@@ -93,9 +93,7 @@ public class XMLSerialization implements Serializable {
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
            
-           
             searchElement.setAttribute("date", dateFormat.format(date));
-            //searchElement.appendChild(dateElement);
             
             Element termElement = doc.createElement("terms");
             termElement.appendChild(doc.createTextNode(term));
