@@ -29,7 +29,8 @@ import org.xml.sax.SAXException;
 public class WeatherParser {
 
     private boolean inavlidCode;
-    private String output;
+    private String title;
+    private String desciption;
 
     public WeatherParser(String addressHTTP) {
         // Set invalid code to null
@@ -55,8 +56,9 @@ public class WeatherParser {
             }
         }
 
-        // Start parsing
-        output = parse(doc);
+        // Start parsing with error handling
+        title = parseTitle(doc);
+        desciption = parseDesciption(doc);
     }
 
     public WeatherParser(int locationCode) {
@@ -80,11 +82,16 @@ public class WeatherParser {
         }
 
         // Start parsing with error handling
-        output = parse(doc);
+        title = parseTitle(doc);
+        desciption = parseDesciption(doc);
     }
 
-    public String getOutput() {
-        return output;
+    public String getTitle() {
+        return title;
+    }
+    
+    public String getDesciption() {
+        return desciption;
     }
 
     private DocumentBuilder getDocumentBuilder() {
@@ -121,7 +128,28 @@ public class WeatherParser {
         return url;
     }
 
-    private String parse(Document doc) {
+    private String parseTitle(Document doc) {
+        if (!inavlidCode) {
+            // Create new XPath using factory
+            XPathFactory xpfactory = XPathFactory.newInstance();
+            XPath path = xpfactory.newXPath();
+
+            // Get the first title element of the RSS feed and output
+            String output = "Location Data Not Found!";
+            try {
+                output = path.evaluate("/rss/channel/item/title", doc);
+            } catch (XPathExpressionException ex) {
+                Logger.getLogger(WeatherParser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // Return the title
+            return output;
+        } else {
+            return "ERROR";
+        }
+    }
+    
+    private String parseDesciption(Document doc) {
         if (!inavlidCode) {
             // Create new XPath using factory
             XPathFactory xpfactory = XPathFactory.newInstance();

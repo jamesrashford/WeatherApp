@@ -297,11 +297,11 @@ public class WeatherFrame extends javax.swing.JFrame {
         int geonameId = l.getGeonameId();
 
         WeatherParser parser = new WeatherParser(geonameId);
-        boolean locationFounds = parser.getOutput().contains("ERROR");
+        boolean locationFounds = parser.getDesciption().contains("ERROR");
         
         if (!locationFounds) {
-            Weather w = new Weather(parser.getOutput());
-            System.out.println(parser.getOutput());
+            Weather w = new Weather(parser.getDesciption());
+            System.out.println(parser.getDesciption());
             
             // Update weather info in field
             tempValueField.setText(w.getTemperature());
