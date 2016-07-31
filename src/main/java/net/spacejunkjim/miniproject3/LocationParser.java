@@ -28,7 +28,7 @@ import org.xml.sax.SAXException;
  * @author James Ashford, Dorian Dressler
  */
 public class LocationParser {
-    private static final String GEONAMES_USERNAME = "spacejunkjim";
+    private static final String GEONAMES_USERNAME = "yourusername";
     private ArrayList<Location> output;
     
     /**
